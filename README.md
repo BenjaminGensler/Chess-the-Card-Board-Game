@@ -1,2 +1,2 @@
 # Chess
-Chess, the classic board game
+Chess, the classic board game with a few twists
