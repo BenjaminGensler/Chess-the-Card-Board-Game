@@ -45,6 +45,8 @@ public class GameController {
         board.printBoard();
 
         setupDeck();
+
+        startGame();
     }
 
     private void setupBoard() {
@@ -149,14 +151,14 @@ public class GameController {
     
                     if(previousColor != board.currentPlayer) {
                         // Add points for capturing pieces
-                        Player capturingPlayer = previousColor.equals("white") ? "black" : "white";
+                        Player capturingPlayer = previousColor.equals("white") ? blackPlayer : whitePlayer;
                         Piece capturedPiece = board.getPiece(toX, toY);
                         capturingPlayer.setPoints(capturedPiece.getPoints());
     
                         System.out.println("Player " + capturingPlayer.getColor() + " captured a " + capturedPiece.getType() + " and earned " + capturedPiece.getPoints() + " points!");
                         System.out.println("Player " + capturingPlayer.getColor() + " now has " + capturingPlayer.getPoints() + " points.");
     
-                        Player losingPlayer = previousColor.equals("white") ? "black" : "white";
+                        Player losingPlayer = previousColor.equals("white") ? blackPlayer : whitePlayer;
                         losingPlayer.setPoints(1);
     
                         System.out.println("Player " + losingPlayer.getColor() + " lost a piece and lost 1 point.");
@@ -167,14 +169,14 @@ public class GameController {
                 // Play a card
                 else if(userInput.equals("2")) {
                     // Check if the current player has any cards
-                    if(currentPlayerObj.getPlayHand().isEmpty()) {
+                    if(currentPlayer.getPlayHand().isEmpty()) {
                         System.out.println("You have no cards to play.");
                         continue;
                     }
     
                     System.out.println(board.currentPlayer + "'s Hand:");
-                    for (int i = 0; i < currentPlayerObj.getPlayHand().size(); i++) {
-                        Card card = currentPlayerObj.getPlayHand().get(i);
+                    for (int i = 0; i < currentPlayer.getPlayHand().size(); i++) {
+                        Card card = currentPlayer.getPlayHand().get(i);
                         System.out.println((i+1) + ". " + card.getType());
                         System.out.println(card.getDescription());
                     }
@@ -183,13 +185,13 @@ public class GameController {
                     System.out.print("Select a card to play: ");
                     int cardInput = cardScanner.nextInt();
     
-                    if(cardInput < 1 || cardInput > currentPlayerObj.getPlayHand().size()) {
+                    if(cardInput < 1 || cardInput > currentPlayer.getPlayHand().size()) {
                         System.out.println("Invalid card selection.");
                         continue;
                     }
     
                     // Get the selected card
-                    Card selectedCard = currentPlayerObj.getPlayHand().get(cardInput - 1);
+                    Card selectedCard = currentPlayer.getPlayHand().get(cardInput - 1);
     
                     System.out.println("You played: " + selectedCard.getType());
     
@@ -197,7 +199,7 @@ public class GameController {
                     selectedCard.playCard(board);
     
                     // Delete the card from the players hand
-                    currentPlayerObj.getPlayHand().remove(cardInput - 1);
+                    currentPlayer.getPlayHand().remove(cardInput - 1);
     
     
                 }
@@ -211,11 +213,11 @@ public class GameController {
                         System.out.print("Select a card to purchase (1-3): ");
                         int shopInput = shopScanner.nextInt();
     
-                        Card purchasedCard = shop.buyCard(shopInput, currentPlayerObj.getPoints());
+                        Card purchasedCard = shop.buyCard(shopInput, currentPlayer.getPoints());
                         if (purchasedCard != null) {
-                            currentPlayerObj.addCardToHand(purchasedCard);
+                            currentPlayer.addCardToHand(purchasedCard);
                             // Deduct points from the player
-                            currentPlayerObj.setPoints(-purchasedCard.getCost());
+                            currentPlayer.setPoints(-purchasedCard.getCost());
                         }
                     }
                 }
@@ -239,30 +241,4 @@ public class GameController {
         // Implement checkmate/stalemate logic
         return false;
     }
-
-
-
-
-
-
-
-
-    // Original Stuff
-    // Moving process ----
-        
-
-        // Shop shop = new Shop();
-
-        // Hands for each player
-        // Player white = new Player("white");
-        // Player black = new Player("black");
-
-
-        // Set currentPlayerObj to the correct Player object
-        // Player currentPlayerObj = board.currentPlayer.equals("white") ? white : black;
-
-
-        
-
-    // Additional methods for move validation, special cards, etc.
 }
