@@ -1,5 +1,7 @@
-import cards.*;
+package game;
 import java.util.ArrayList;
+
+import game.cards.*;
 
 public class Player {
     private String color;

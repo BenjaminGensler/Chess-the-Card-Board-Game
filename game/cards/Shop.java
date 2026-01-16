@@ -1,4 +1,4 @@
-package cards;
+package game.cards;
 import pieces.*;
 import board.*;
 

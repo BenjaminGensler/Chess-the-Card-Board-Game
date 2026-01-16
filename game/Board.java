@@ -1,7 +1,8 @@
-package board;
+package game;
+
 
 import java.util.Scanner;
-import pieces.*;
+import game.pieces.*;
 
 public class Board {
     // Create a Scanner object
@@ -48,7 +49,7 @@ public class Board {
     }
 
     public void removePiece(int x, int y) {
-        Piece piece = getPiece(x, y);
+        // Piece piece = getPiece(x, y);
         board[x][y] = null;
     }
 
