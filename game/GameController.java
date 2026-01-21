@@ -1,23 +1,26 @@
-package game;
+// package game;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import game.cards.BuildQueen;
-import game.cards.Card;
-import game.cards.Kamikaze;
-import game.cards.PawnUpgrade;
-import game.cards.Shop;
-import game.cards.Skip;
-import game.cards.TeleportKing;
-import game.Board;
-import game.pieces.Bishop;
-import game.pieces.King;
-import game.pieces.Pawn;
-import game.pieces.Piece;
-import game.pieces.Rook;
+// import Board;
+
+import cards.BuildQueen;
+import cards.Card;
+import cards.Kamikaze;
+import cards.PawnUpgrade;
+import cards.Shop;
+import cards.Skip;
+import cards.TeleportKing;
+
+import pieces.Piece;
+import pieces.Bishop;
+import pieces.King;
+import pieces.Pawn;
+import pieces.Rook;
 
 public class GameController {
     private Board board;
@@ -28,6 +31,7 @@ public class GameController {
     private List<Card> deck;
     private Shop shop;
     private Scanner scanner;
+    private Boolean gameOver;
 
     public GameController() {
         // Create a Scanner object
@@ -40,6 +44,7 @@ public class GameController {
         colorToPlayer.put("white", whitePlayer);
         colorToPlayer.put("black", blackPlayer);
         this.currentTurn = "white";
+        this.gameOver = false;
 
         setupBoard();
         board.printBoard();
@@ -106,7 +111,7 @@ public class GameController {
     }
 
     public void startGame() {
-        while (!isGameOver()) {
+        while (gameOver == false) {
             board.printBoard();
             Player currentPlayer = colorToPlayer.get(currentTurn);
             // Get move from currentPlayer (input handling)
@@ -164,6 +169,9 @@ public class GameController {
                         System.out.println("Player " + losingPlayer.getColor() + " lost a piece and lost 1 point.");
                         System.out.println("Player " + losingPlayer.getColor() + " now has " + losingPlayer.getPoints() + " points.");
                     }
+
+                    // Check if game is over
+                    isGameOver(fromX, fromY, toX, toY);
                 }
     
                 // Play a card
@@ -237,8 +245,63 @@ public class GameController {
         System.out.println("Game over!");
     }
 
-    private boolean isGameOver() {
-        // Implement checkmate/stalemate logic
+    private boolean isGameOver(int fromX, int fromY, int toX, int toY) {
+        Player currentPlayer = colorToPlayer.get(currentTurn);
+
+        //check if king is in check after move
+        if(board.isKingInCheck(board.getPiece(toX, toY).getColor())) {
+                    
+            // returns pieces back to original position if king is in check
+            System.out.println("You can't move there, King is in check!");
+            board.placePiece(fromX, fromY, board.getPiece(toX, toY));
+            board.placePiece(toX, toY, null);
+            return false;
+        }
+
+        // Check for checkmate
+        if(board.isCheckmate(board.getPiece(toX, toY).getColor().equals("white") ? "black" : "white")) {
+            board.printBoard();
+            
+            // check if player in checkmate has a Teleport King card
+            board.currentPlayer = board.getPiece(toX, toY).getColor().equals("white") ? "black" : "white";
+            System.out.println(board.currentPlayer + " is in checkmate! Do you want to use your teleport King card?");
+            System.out.println("1. Yes");
+            System.out.println("2. No");
+            String choice = scanner.nextLine();
+            if(choice.equals("1")) {
+
+                int cardInput = 0;
+
+                for(Card card : currentPlayer.getPlayHand()) {
+                    if(card.getType().equals("Teleport King")) {
+                        cardInput = currentPlayer.getPlayHand().indexOf(card) + 1;
+                        break;
+                    }
+                }
+                // get the card from the players hand
+                Card selectedCard = currentPlayer.getPlayHand().get(cardInput - 1);
+ 
+                System.out.println("You played: " + selectedCard.getType());
+
+                // Play the teleport king card
+                selectedCard.playCard(board);
+
+                // Delete the card from the players hand
+                currentPlayer.getPlayHand().remove(cardInput - 1);
+
+            }
+            if(!choice.equals("2")) {
+                System.out.println("Invalid choice. Proceeding without using the card.");
+                return true;
+            }
+
+            System.out.println("Checkmate! " + (board.getPiece(toX, toY).getColor().equals("white") ? "White" : "Black") + " wins!");
+            System.exit(0);
+            return true;
+        }
+
+        // Switch player
+        board.switchPlayer();
         return false;
     }
 }

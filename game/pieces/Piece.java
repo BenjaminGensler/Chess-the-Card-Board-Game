@@ -1,5 +1,5 @@
 package pieces;
-import board.*;
+import board;
 import game.Board;
 
 public class Piece {

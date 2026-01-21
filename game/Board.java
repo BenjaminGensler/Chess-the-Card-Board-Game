@@ -1,8 +1,8 @@
-package game;
+// package game;
 
 
 import java.util.Scanner;
-import game.pieces.*;
+import pieces.*;
 
 public class Board {
     // Create a Scanner object
@@ -93,59 +93,6 @@ public class Board {
                         }
                     }
                 }
-                
-                //check if king is in check after move
-                if(this.isKingInCheck(this.getPiece(toX, toY).getColor())) {
-                    
-                    // returns pieces back to original position if king is in check
-                    System.out.println("You can't move there, King is in check!");
-                    this.placePiece(fromX, fromY, this.getPiece(toX, toY));
-                    this.placePiece(toX, toY, null);
-                    return;
-                }
-
-                // Check for checkmate
-                if(this.isCheckmate(this.getPiece(toX, toY).getColor().equals("white") ? "black" : "white")) {
-                    this.printBoard();
-                    
-                    // check if player in checkmate has a Teleport King card
-                    currentPlayer = this.getPiece(toX, toY).getColor().equals("white") ? "black" : "white";
-                    System.out.println(currentPlayer + " is in checkmate! Do you want to use your teleport King card?");
-                    System.out.println("1. Yes");
-                    System.out.println("2. No");
-                    String choice = scanner.nextLine();
-                    if(choice.equals("1")) {
-
-                        int cardInput = 0;
-
-                        for(Card card : currentPlayer.getPlayHand()) {
-                            if(card.getType().equals("Teleport King")) {
-                                cardInput = currentPlayer.getPlayHand().indexOf(card) + 1;
-                                break;
-                            }
-                        }
-                        // get the card from the players hand
-                        Card selectedCard = currentPlayer.getPlayHand().get(cardInput - 1);
-
-                        System.out.println("You played: " + selectedCard.getType());
-
-                        // Play the teleport king card
-                        selectedCard.playCard(board);
-
-                        // Delete the card from the players hand
-                        currentPlayer.getPlayHand().remove(cardInput - 1);
-
-                    }
-                    if(!choice.equals("2")) {
-                        System.out.println("Invalid choice. Proceeding without using the card.");
-                    }
-
-                    System.out.println("Checkmate! " + (this.getPiece(toX, toY).getColor().equals("white") ? "White" : "Black") + " wins!");
-                    System.exit(0);
-                }
-
-                // Switch player
-                switchPlayer();
             }
         }
     }
