@@ -1,5 +1,5 @@
 package game.cards;
-import board.*;
+
 import game.Board;
 
 public class Card {

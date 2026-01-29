@@ -1,5 +1,5 @@
 package pieces;
-import game.Board;
+// import Board;
 
 public class Bishop extends Piece {
     public Bishop(String color) {

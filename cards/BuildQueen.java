@@ -1,6 +1,5 @@
 package game.cards;
-import pieces.*;
-import board.*;
+import game.pieces.*;
 import game.Board;
 
 import java.util.Scanner;

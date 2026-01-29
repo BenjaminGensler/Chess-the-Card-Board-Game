@@ -1,6 +1,5 @@
 // package game;
 
-
 import java.util.Scanner;
 import pieces.*;
 

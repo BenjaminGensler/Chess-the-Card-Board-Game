@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-// import Board;
+import Board;
 
 import cards.BuildQueen;
 import cards.Card;
@@ -61,31 +61,31 @@ public class GameController {
         //     board.placePiece(1, i, new Pawn("white"));
         // }
 
-        // // Adds Rooks
-        // board.placePiece(0, 0, new Rook("white"));
-        // board.placePiece(0, 7, new Rook("white"));
-        // board.placePiece(7, 0, new Rook("black"));
-        // board.placePiece(7, 7, new Rook("black"));
+        // Adds Rooks
+        board.placePiece(0, 0, new Rook("white"));
+        board.placePiece(0, 7, new Rook("white"));
+        board.placePiece(7, 0, new Rook("black"));
+        board.placePiece(7, 7, new Rook("black"));
 
-        // // Add Knights
-        // board.placePiece(0, 1, new Knight("white"));
-        // board.placePiece(0, 6, new Knight("white"));
-        // board.placePiece(7, 1, new Knight("black"));
-        // board.placePiece(7, 6, new Knight("black"));
+        // Add Knights
+        board.placePiece(0, 1, new Knight("white"));
+        board.placePiece(0, 6, new Knight("white"));
+        board.placePiece(7, 1, new Knight("black"));
+        board.placePiece(7, 6, new Knight("black"));
 
-        // // Add Bishops
-        // board.placePiece(0, 2, new Bishop("white"));
-        // board.placePiece(0, 5, new Bishop("white"));
-        // board.placePiece(7, 2, new Bishop("black"));
-        // board.placePiece(7, 5, new Bishop("black"));
+        // Add Bishops
+        board.placePiece(0, 2, new Bishop("white"));
+        board.placePiece(0, 5, new Bishop("white"));
+        board.placePiece(7, 2, new Bishop("black"));
+        board.placePiece(7, 5, new Bishop("black"));
 
-        // //Add Queens
-        // board.placePiece(0, 3, new Queen("white"));
-        // board.placePiece(7, 3, new Queen("black"));
+        //Add Queens
+        board.placePiece(0, 3, new Queen("white"));
+        board.placePiece(7, 3, new Queen("black"));
 
-        // //Add Kings
-        // board.placePiece(0, 4, new King("white"));
-        // board.placePiece(7, 4, new King("black"));
+        //Add Kings
+        board.placePiece(0, 4, new King("white"));
+        board.placePiece(7, 4, new King("black"));
 
         // Checkmate testing setup
         board.placePiece(0, 0, new King("white"));
@@ -208,8 +208,6 @@ public class GameController {
     
                     // Delete the card from the players hand
                     currentPlayer.getPlayHand().remove(cardInput - 1);
-    
-    
                 }
     
                 // Purchase a card

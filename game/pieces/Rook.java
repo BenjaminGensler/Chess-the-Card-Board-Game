@@ -1,6 +1,5 @@
 package pieces;
-import board.*;
-import game.Board;
+// import Board;
 
 public class Rook extends Piece {
     public Rook(String color) {

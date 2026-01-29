@@ -1,5 +1,4 @@
 package game.cards;
-import board.*;
 import game.Board;
 
 public class Skip extends Card {

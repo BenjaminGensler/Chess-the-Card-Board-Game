@@ -1,16 +1,18 @@
 package pieces;
-import board;
-import game.Board;
+// import Board;
 
 public class Piece {
     private String color;
     private String type;
     private int points;
 
+    protected Board board;
+
     public Piece(String color, String type, int points) {
         this.color = color;
         this.type = type;
         this.points = points;
+        // this.board = board;
     }
 
     public String getColor() {
@@ -44,7 +46,7 @@ public class Piece {
         }
     }
 
-    public boolean isLegalMove(int fromX, int fromY, int toX, int toY, Board board) {
+    public boolean isLegalMove(int fromX, int fromY, int toX, int toY) {
         return false;
     }
 }
