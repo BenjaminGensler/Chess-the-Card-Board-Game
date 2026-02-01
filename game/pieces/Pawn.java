@@ -7,12 +7,13 @@ public class Pawn extends Piece {
     }
 
     // Pawns can move forward one square, or two squares from their starting position
-    public boolean isLegalMove(int fromX, int fromY, int toX, int toY, Board board) {
+    // public boolean isLegalMove(int fromX, int fromY, int toX, int toY, Board board) {
+    public boolean isLegalMove(int fromX, int fromY, int toX, int toY) {
         
         System.out.println("isLegalMove() 0");
         System.out.println("fromX: " + fromX + " fromY: " + fromY + " toX: " + toX + " toY: " + toY);
-        System.out.println("Piece Color: " + board.getPiece(fromX, fromY).getColor());
-        System.out.println("Target Piece: " + (board.getPiece(toX, toY) != null ? board.getPiece(toX, toY).getColor() : "none"));
+        // System.out.println("Piece Color: " + board.getPiece(fromX, fromY).getColor());
+        // System.out.println("Target Piece: " + (board.getPiece(toX, toY) != null ? board.getPiece(toX, toY).getColor() : "none"));
 
         // //White debugging checks
         // System.out.println("White debugging checks:");
@@ -31,39 +32,40 @@ public class Pawn extends Piece {
         // System.out.println(board.getPiece(toX, toY) == null);
         
         // Check if 1 space forward is empty
-        if((board.getPiece(fromX, fromY).getColor().equals("white") && (toX == fromX + 1) && (toY == fromY) && board.getPiece(fromX, fromY) != null && board.getPiece(toX, toY) == null) ||
-           (board.getPiece(fromX, fromY).getColor().equals("black") && (toX == fromX - 1) && (toY == fromY) && board.getPiece(fromX, fromY) != null && board.getPiece(toX, toY) == null)) {
+        if(((toX == fromX + 1) && (toY == fromY)) ||
+           ((toX == fromX - 1) && (toY == fromY))) {
             System.out.println("Pawn isLegalMove() 1");
             return true;
         }
 
         // Check if 2 spaces forward is empty (space in between must be empty)
-        else if((board.getPiece(fromX, fromY).getColor().equals("white") && fromX == 1 && toX == fromX + 2 && toY == fromY && board.getPiece(fromX + 1, fromY) == null && board.getPiece(fromX, fromY) != null && board.getPiece(toX, toY) == null) ||
-                (board.getPiece(fromX, fromY).getColor().equals("black") && fromX == 6 && toX == fromX - 2 && toY == fromY && board.getPiece(fromX - 1, fromY) == null && board.getPiece(fromX, fromY) != null && board.getPiece(toX, toY) == null)) {
+        else if((fromX == 1 && toX == fromX + 2 && toY == fromY) ||
+                (fromX == 6 && toX == fromX - 2 && toY == fromY)) {
             System.out.println("Pawn isLegalMove() 2");
             return true;
         }
 
 
         // White pawn captures diagonally forward
-        if (board.getPiece(fromX, fromY).getColor().equals("white") &&
-            toX == fromX + 1 && Math.abs(toY - fromY) == 1 &&
-            board.getPiece(toX, toY) != null &&
-            !board.getPiece(toX, toY).getColor().equals("white")) {
+        // if (board.getPiece(fromX, fromY).getColor().equals("white") &&
+        //     toX == fromX + 1 && Math.abs(toY - fromY) == 1 &&
+        //     board.getPiece(toX, toY) != null &&
+        //     !board.getPiece(toX, toY).getColor().equals("white")) {
+        //     System.out.println("Pawn isLegalMove() 3 white");
+        //     return true;
+        // }
+        else if(toX == fromX + 1 && Math.abs(toY - fromY) == 1 ) {
             System.out.println("Pawn isLegalMove() 3 white");
             return true;
         }
 
         // Black pawn captures diagonally forward
-        if (board.getPiece(fromX, fromY).getColor().equals("black") &&
-            toX == fromX - 1 && Math.abs(toY - fromY) == 1 &&
-            board.getPiece(toX, toY) != null &&
-            !board.getPiece(toX, toY).getColor().equals("black")) {
+        else if (toX == fromX - 1 && Math.abs(toY - fromY) == 1 ) {
             System.out.println("Pawn isLegalMove() 3 black");
             return true;
         }
 
-        System.out.println("Pawn isLegalMove() 4");
+        System.out.println("Pawn isLegalMove() 4 flase");
         return false;
     }
     

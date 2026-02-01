@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import Board;
+// import Board;
 
 import cards.BuildQueen;
 import cards.Card;
@@ -21,6 +21,8 @@ import pieces.Bishop;
 import pieces.King;
 import pieces.Pawn;
 import pieces.Rook;
+import pieces.Knight;
+import pieces.Queen;
 
 public class GameController {
     private Board board;

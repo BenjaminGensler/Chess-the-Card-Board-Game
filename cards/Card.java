@@ -1,6 +1,4 @@
-package game.cards;
-
-import game.Board;
+package cards;
 
 public class Card {
     private String description;

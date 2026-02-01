@@ -6,7 +6,7 @@ public class Piece {
     private String type;
     private int points;
 
-    protected Board board;
+    // protected Board board;
 
     public Piece(String color, String type, int points) {
         this.color = color;

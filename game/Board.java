@@ -56,7 +56,7 @@ public class Board {
     public void movePiece(int fromX, int fromY, int toX, int toY) {
         if (this.getPiece(fromX, fromY) != null) {
             // check if the pieces move is legal
-            if(this.getPiece(fromX, fromY).isLegalMove(fromX, fromY, toX, toY, this) == false) {
+            if(this.getPiece(fromX, fromY).isLegalMove(fromX, fromY, toX, toY) == false) {
                 System.out.println("Illegal move");
                 return;
             }
@@ -99,7 +99,7 @@ public class Board {
     // Silent move for simulation (does not print or undo)
     public void movePieceSilent(int fromX, int fromY, int toX, int toY) {
         if (this.getPiece(fromX, fromY) != null) {
-            if (this.getPiece(fromX, fromY).isLegalMove(fromX, fromY, toX, toY, this)) {
+            if (this.getPiece(fromX, fromY).isLegalMove(fromX, fromY, toX, toY)) {
                 this.placePiece(toX, toY, this.getPiece(fromX, fromY));
                 this.placePiece(fromX, fromY, null);
             }
@@ -206,7 +206,7 @@ public class Board {
                     // Try every possible destination
                     for (int toX = 0; toX < 8; toX++) {
                         for (int toY = 0; toY < 8; toY++) {
-                            if (piece.isLegalMove(fromX, fromY, toX, toY, this)) {
+                            if (piece.isLegalMove(fromX, fromY, toX, toY)) {
                                 // Simulate the move
                                 Board copy = this.copyBoard();
                                 copy.movePieceSilent(fromX, fromY, toX, toY);
