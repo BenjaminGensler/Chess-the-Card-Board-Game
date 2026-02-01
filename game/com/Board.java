@@ -1,7 +1,8 @@
-// package game;
+package com;
 
 import java.util.Scanner;
-import pieces.*;
+
+import com.pieces.*;
 
 public class Board {
     // Create a Scanner object

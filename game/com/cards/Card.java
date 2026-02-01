@@ -1,4 +1,5 @@
-package cards;
+package com.cards;
+import com.Board;
 
 public class Card {
     private String description;

@@ -1,6 +1,6 @@
-package game.cards;
-import game.pieces.*;
-import game.Board;
+package com.cards;
+// import game.pieces.*;
+// import game.Board;
 
 import java.util.Arrays;
 import java.util.Collections;

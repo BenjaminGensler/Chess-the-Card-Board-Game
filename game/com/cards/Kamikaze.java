@@ -1,6 +1,6 @@
-package game.cards;
-import game.Board;
-import game.pieces.*;
+package com.cards;
+import com.Board;
+import com.pieces.Piece;
 import java.util.Scanner;
 
 public class Kamikaze extends Card {

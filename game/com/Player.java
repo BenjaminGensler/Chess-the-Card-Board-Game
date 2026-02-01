@@ -1,7 +1,6 @@
-// package game;
+package com;
 import java.util.ArrayList;
-
-import cards.*;
+import com.cards.Card;
 
 public class Player {
     private String color;

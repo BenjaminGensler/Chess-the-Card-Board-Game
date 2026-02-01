@@ -1,4 +1,4 @@
-package pieces;
+package com.pieces;
 // import Board;
 
 public class Knight extends Piece {

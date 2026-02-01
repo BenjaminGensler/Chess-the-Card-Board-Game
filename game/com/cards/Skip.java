@@ -1,5 +1,5 @@
-package game.cards;
-import game.Board;
+package com.cards;
+import com.Board;
 
 public class Skip extends Card {
     public Skip() {

@@ -1,4 +1,4 @@
-// package game;
+package com;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,23 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-// import Board;
+import com.pieces.Bishop;
+import com.pieces.King;
+import com.pieces.Knight;
+import com.pieces.Pawn;
+import com.pieces.Piece;
+import com.pieces.Queen;
+import com.pieces.Rook;
 
-import cards.BuildQueen;
-import cards.Card;
-import cards.Kamikaze;
-import cards.PawnUpgrade;
-import cards.Shop;
-import cards.Skip;
-import cards.TeleportKing;
-
-import pieces.Piece;
-import pieces.Bishop;
-import pieces.King;
-import pieces.Pawn;
-import pieces.Rook;
-import pieces.Knight;
-import pieces.Queen;
+import com.cards.*;
 
 public class GameController {
     private Board board;
