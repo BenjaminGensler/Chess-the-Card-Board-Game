@@ -32,6 +32,7 @@ public class GameController {
         scanner = new Scanner(System.in);
 
         this.board = new Board();
+        this.shop = new Shop();
         this.whitePlayer = new Player("white");
         this.blackPlayer = new Player("black");
         this.colorToPlayer = new HashMap<>();
